@@ -342,7 +342,7 @@ void CrawlerWidget::keyPressEvent( QKeyEvent* keyEvent )
 {
     LOG(logDEBUG4) << "keyPressEvent received";
 
-    switch ( (keyEvent->text())[0].toAscii() ) {
+    switch ( (keyEvent->text())[0].toLatin1() ) {
         case '/':
         case '?':
             displayQuickFindBar();

@@ -497,14 +497,14 @@ void AbstractLogView::keyPressEvent( QKeyEvent* keyEvent )
     else if ( keyEvent->key() == Qt::Key_End )
         jumpToRightOfScreen();
     else {
-        const char character = (keyEvent->text())[0].toAscii();
+        const char character = (keyEvent->text())[0].toLatin1();
 
         if ( ( character >= '0' ) && ( character <= '9' ) ) {
             // Adds the digit to the timed buffer
             digitsBuffer_.add( character );
         }
         else {
-            switch ( (keyEvent->text())[0].toAscii() ) {
+            switch ( (keyEvent->text())[0].toLatin1() ) {
                 case 'j':
                     {
                         int delta = qMax( 1, digitsBuffer_.content() );

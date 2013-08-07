@@ -22,7 +22,7 @@
 // load/save the settings on opening/closing of the app
 
 #include <iostream>
-#include <QtGui>
+#include <QtWidgets>
 
 #include "log.h"
 

@@ -4,6 +4,8 @@
 TARGET = glogg
 TEMPLATE = app
 
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 win32:Debug:CONFIG += console
 # Necessary when cross-compiling:
 win32:Release:QMAKE_LFLAGS += "-Wl,-subsystem,windows"
@@ -70,6 +72,18 @@ HEADERS += \
     overview.h \
     overviewwidget.h \
     marks.h
+
+# Picking up BOOST_PATH from system if defined.
+isEmpty(BOOST_PATH) {
+    message(trying \$\$BOOST_PATH QMake variable\'s value at the time qmake is run [$$BOOST_PATH])
+    BOOST_PATH = $$BOOST_PATH
+}
+isEmpty(BOOST_PATH) {
+    message(trying "\$\$"+"(BOOST_PATH)" QMake variable\'s value at the time qmake is run [$$(BOOST_PATH)])
+    BOOST_PATH = $$(BOOST_PATH)
+}
+
+message(BOOST_PATH $$(BOOST_PATH))
 
 isEmpty(BOOST_PATH) {
     message(Building using system dynamic Boost libraries)
