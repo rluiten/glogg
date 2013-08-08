@@ -53,6 +53,16 @@ void SearchingNotifier::sendNotification()
     startTime_ = QTime::currentTime().addMSecs( -800 );
 }
 
+void SearchingNotifier::sendNotification(int line)
+{
+    QString message = QString( "Searching @ %1" ).arg(line);
+    LOG( logDEBUG ) << "Emitting Searching (line)";
+    emit notify( message );
+
+    QApplication::processEvents( QEventLoop::ExcludeUserInputEvents );
+    startTime_ = QTime::currentTime().addMSecs( -800 );
+}
+
 void QuickFind::LastMatchPosition::set( int line, int column )
 {
     if ( ( line_ == -1 ) ||
@@ -144,7 +154,7 @@ int QuickFind::searchForward()
             line++;
 
             // See if we need to notify of the ongoing search
-            searchingNotifier_.ping();
+            searchingNotifier_.ping(line);
         }
     }
 

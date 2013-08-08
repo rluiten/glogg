@@ -48,6 +48,10 @@ class SearchingNotifier : public QObject
         if ( startTime_.msecsTo( QTime::currentTime() ) > 1000 )
             sendNotification();
     }
+    inline void ping(int line) {
+        if ( startTime_.msecsTo( QTime::currentTime() ) > 1000 )
+            sendNotification(line);
+    }
 
   signals:
     // Sent when the UI shall display a message to the user.
@@ -55,6 +59,7 @@ class SearchingNotifier : public QObject
 
   private:
     void sendNotification();
+    void sendNotification(int line);
 
     QTime startTime_;
     int dotToDisplay_;
